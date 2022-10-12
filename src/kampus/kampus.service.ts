@@ -1,28 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { CreateKampusDto } from './dto/create-kampus.dto';
-import { UpdateKampusDto } from './dto/update-kampus.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Kampus } from './entities/kampus.entity';
 
 @Injectable()
 export class KampusService {
-  findKampusById(id: number) { }
+  constructor(@InjectRepository(Kampus) private kampusRepository: Repository<Kampus>) { }
 
-  create(createKampusDto: CreateKampusDto) {
-    return 'This action adds a new kampus';
-  }
-
-  findAll() {
-    return `This action returns all kampus`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} kampus`;
-  }
-
-  update(id: number, updateKampusDto: UpdateKampusDto) {
-    return `This action updates a #${id} kampus`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} kampus`;
+  findKampusById(id: number): Promise<Kampus> {
+    return this.kampusRepository.findOneBy({ id })
   }
 }
