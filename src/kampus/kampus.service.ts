@@ -1,20 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { getManager, Repository } from 'typeorm';
-import { DetailJurusan } from './entities/detail_jurusan.entity';
-import { Fakultas } from './entities/fakultas.entity';
-import { Jurusan } from './entities/jurusan.entity';
+import { Repository } from 'typeorm';
 import { Kampus } from './entities/kampus.entity';
 
 @Injectable()
 export class KampusService {
   constructor(
     @InjectRepository(Kampus) private kampusRepository: Repository<Kampus>,
-    @InjectRepository(DetailJurusan) private detaiJurusanRepository: Repository<DetailJurusan>,
   ) { }
 
-  findKampusById(id: number): Promise<Kampus> {
-    return this.kampusRepository.findOneBy({ id })
+  async findKampusById(id: number): Promise<Kampus> {
+    return await this.kampusRepository.findOneBy({ id })
   }
 
   listJurusan(id: number): Promise<Kampus> {

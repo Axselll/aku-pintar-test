@@ -1,20 +1,23 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { PenggunaService } from './pengguna.service';
-import { CreatePenggunaDto } from './dto/create-pengguna.dto';
-
+import { CreateFollowDto } from './dto/create-follow.dto';
 
 @Controller('pengguna')
 export class PenggunaController {
   constructor(private readonly penggunaService: PenggunaService) { }
 
   @Post()
-  create(@Body() createPenggunaDto: CreatePenggunaDto) {
-    return this.penggunaService.create(createPenggunaDto);
+  create(@Body() body: CreateFollowDto) {
+    return this.penggunaService.input(body);
   }
 
-  @Get()
+  @Get('mengikuti')
   findAll() {
-    return this.penggunaService.findAll();
+    return this.penggunaService.cariSemuaData();
   }
 
+  @Get('/:id')
+  findone(@Param('id') id: number) {
+    return this.penggunaService.cariDataSatuPengguna(id)
+  }
 }
