@@ -20,7 +20,7 @@ export class KampusService {
   listJurusan(id: number): Promise<Kampus> {
     try {
       const data = this.kampusRepository.findOne({
-        relations: ['memiliki', 'memiliki.jurusan'],
+        relations: ['memiliki', 'memiliki.fakultas', 'memiliki.jurusan'],
         where: { id: id }
       })
       return data
