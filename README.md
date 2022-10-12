@@ -30,12 +30,22 @@ $ npm run start:prod
 ## Endpoint
 
 ```bash
+# Untuk melakukan proses create/follow kampus
+localhost:3000/pengguna -> POST
+JSON Schema saat menjalankan proses POST
+{
+    "id": null, <== contoh
+    "pengguna": 1, <== contoh
+    "kampus": 1 <== contoh
+}
+
+
 # Untuk melihat pengguna mengikuti kampus mana saja
-localhost:3000/pengguna/{id}
+localhost:3000/pengguna/{id} -> GET
 
 # Untuk mencari kampus
-localhost:3000/kampus/{id}
+localhost:3000/kampus/{id} -> GET
 
 # Untuk mencari list jurusan yang ada di suatu kampus
-localhost:3000/kampus/jurusan/{id}
+localhost:3000/kampus/jurusan/{id} -> GET
 ```
