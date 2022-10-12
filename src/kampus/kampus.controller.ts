@@ -11,4 +11,9 @@ export class KampusController {
   findOne(@Param('id') id: number) {
     return this.kampusService.findKampusById(id);
   }
+
+  @Get('/jurusan/:id')
+  findJurusan(@Param('id') id: number) {
+    return this.kampusService.listJurusan(id)
+  }
 }
